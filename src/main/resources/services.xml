@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Attention, placer ce fichier de config dans le dossier 'resources' -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean id="products" class="fr.david.ecommerce.service.ProductServiceImpl"></bean>
+        <bean id="clients" class="fr.david.ecommerce.service.ClientServiceImpl"></bean>
+        <bean id="orders" class="fr.david.ecommerce.service.OrderServiceImpl">
+                <property name="productService" ref="products"></property>
+        </bean>
+</beans>
