@@ -8,20 +8,19 @@ import fr.david.ecommerce.model.Product;
 import fr.david.ecommerce.service.ClientService;
 import fr.david.ecommerce.service.OrderService;
 import fr.david.ecommerce.service.ProductService;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 //@SpringBootApplication
+@ComponentScan("fr.*")
 public class TpECommerceApplication {
 
     public static void main(String[] args) {
-        // SpringApplication.run(CdaECommerceApplication.class, args);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TpECommerceApplication.class);
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
-        // Récupération de l'instance de type ProductService créé par le bean
         ProductService productService = context.getBean("products", ProductService.class);
         ClientService clientService = context.getBean("clients", ClientService.class);
         OrderService orderService = context.getBean("orders", OrderService.class);

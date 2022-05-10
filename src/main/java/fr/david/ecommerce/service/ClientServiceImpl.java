@@ -2,10 +2,12 @@ package fr.david.ecommerce.service;
 
 import fr.david.ecommerce.exception.RessourceNotFoundException;
 import fr.david.ecommerce.model.Client;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service("clients")
 public class ClientServiceImpl implements ClientService {
 
     private final List<Client> allClient = new ArrayList<>();
