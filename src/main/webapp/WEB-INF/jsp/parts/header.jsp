@@ -15,8 +15,8 @@
     <div class="container">
         <nav class="navbar">
             <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Sandwiches</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/sandwiches">Sandwiches</a></li>
                 <li><a href="">About</a></li>
             </ul>
             <span class="material-symbols-outlined">shopping_cart</span>
