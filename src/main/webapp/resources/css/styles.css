@@ -143,6 +143,7 @@ main {
     color: var(--bg-cta);
 }
 
+main.sandwich,
 main.sandwiches {
     padding: 2rem 0;
     background-color: var(--bg-sandwiches);
@@ -184,13 +185,26 @@ main h1 {
     object-fit: cover;
 }
 
-.card_price {
+.card_price,
+.card_quantity {
     color: var(--cl-price);
     font-style: italic;
-    margin-bottom: 1rem;
     padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--cl-borders);
+}
+
+.card_price span,
+.card_quantity span {
+    color: var(--cl-primary);
+}
+
+.card_description {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--cl-borders);
+}
+
+.card_description--extra {
+    text-align: justify;
 }
 
 .card_button_container {
@@ -203,10 +217,30 @@ main h1 {
     padding: .6rem 1.2rem;
     color: var(--cl-secondary);
     background-color: var(--bg-cta);
-    border: none;
     border-radius: 4px;
-    font-size: inherit;
-    cursor: pointer;
+    text-decoration: none;
+}
+
+.sandwich .card {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sandwich .card_img {
+    width: 40%;
+    padding-right: 1rem;
+    max-height: 500px;
+}
+
+.sandwich .card_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.sandwich .card_img img {
+    height: 500px;
 }
 
 footer {

@@ -14,7 +14,7 @@
                     <p class="card_price">${product.price} $</p>
                     <p class="card_description">${product.description}</p>
                     <div class="card_button_container">
-                        <button class="card_button">Add to cart</button>
+                        <a href="/sandwiches/${product.id}" class="card_button">See more</a>
                     </div>
                 </div>
             </c:forEach>
