@@ -1,7 +1,13 @@
 package fr.david.ecommerce.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "table_client")
 public class Client {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String password;
