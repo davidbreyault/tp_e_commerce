@@ -1,14 +1,28 @@
 package fr.david.ecommerce.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity
+@Table(name = "table_order")
 public class Order {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "created_at")
     private LocalDate dateCreated;
+
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
+
+    @OneToMany
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
     private List<OrderProduct> orderProducts;
 
     public Order() {
@@ -83,7 +97,8 @@ public class Order {
         }
         // Sinon on ajoute une nouvelle ligne de commande
         if (orderProduct == null) {
-            orderProduct = new OrderProduct(product, this, quantity);
+            OrderProductId orderProductId = new OrderProductId(product.getId(), id);
+            orderProduct = new OrderProduct(orderProductId, product, this, quantity);
             getOrderProducts().add(orderProduct);
         }
     }
