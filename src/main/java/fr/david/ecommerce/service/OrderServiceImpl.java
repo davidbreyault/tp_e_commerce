@@ -3,10 +3,10 @@ package fr.david.ecommerce.service;
 import fr.david.ecommerce.exception.StockException;
 import fr.david.ecommerce.model.Order;
 import fr.david.ecommerce.model.OrderProduct;
+import fr.david.ecommerce.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("orders")
@@ -14,25 +14,18 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ProductService productService;
-    private List<Order> allOrders = new ArrayList<>();
-
-    public ProductService getProductService() {
-        return productService;
-    }
-
-    public void setProductService(ProductService productService) {
-        this.productService = productService;
-    }
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Override
     public List<Order> getAllOrders() {
-        return allOrders;
+        return orderRepository.findAll();
     }
 
     @Override
     public Order create(Order order) {
         order.setStatus("En cours");
-        allOrders.add(order);
+        orderRepository.save(order);
         return order;
     }
 

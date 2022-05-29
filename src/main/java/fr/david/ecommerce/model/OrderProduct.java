@@ -1,16 +1,30 @@
 package fr.david.ecommerce.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "table_order_product")
 public class OrderProduct {
 
+    @EmbeddedId
+    private OrderProductId id;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
     private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
     private Order order;
+
     private int quantity;
 
     public OrderProduct() {
         super();
     }
 
-    public OrderProduct(Product product, Order order, int quantity) {
+    public OrderProduct(OrderProductId id, Product product, Order order, int quantity) {
+        this.id = id;
         this.product = product;
         this.order = order;
         this.quantity = quantity;
@@ -20,9 +34,7 @@ public class OrderProduct {
         return product;
     }
 
-    public Order getOrder() {
-        return order;
-    }
+    // Note : ne pas faire de getter sur order pour éviter le problème de récursion infinie (order -> orderproduct -> order -> orderproduct...)
 
     public int getQuantity() {
         return quantity;

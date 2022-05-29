@@ -3,36 +3,31 @@ package fr.david.ecommerce.service;
 import fr.david.ecommerce.exception.RessourceNotFoundException;
 import fr.david.ecommerce.exception.StockException;
 import fr.david.ecommerce.model.Product;
+import fr.david.ecommerce.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("products")
 public class ProductServiceImpl implements ProductService {
 
-    private final List<Product> allProducts = new ArrayList<>();
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public List<Product> getAllProducts() {
-        return allProducts;
+        return productRepository.findAll();
     }
 
     @Override
     public Product getProductById(Long id) throws RessourceNotFoundException {
-        Product product = null;
-        for (int i = 0; i < allProducts.size(); i++) {
-            if (allProducts.get(i).getId() == id) {
-                product = allProducts.get(i);
-                return product;
-            }
-        }
-        throw new RessourceNotFoundException("Product not found");
+        return productRepository.getById(id);
     }
 
     @Override
     public Product save(Product product) {
-        allProducts.add(product);
+        productRepository.save(product);
         return product;
     }
 
